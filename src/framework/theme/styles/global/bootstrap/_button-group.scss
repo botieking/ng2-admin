@@ -4,8 +4,6 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 
-@import './hero-buttons';
-
 @mixin nga-b-button-group-theme() {
 
   .btn + .dropdown-toggle,
@@ -25,43 +23,11 @@
     padding-left: calc(1rem + 4px);
   }
 
-  .btn-group.btn-group-hidden > .btn {
-    background-color: transparent;
-  }
-
   .btn-group.btn-group-block {
     width: 100%;
 
     .btn:not(.btn-group-icon) {
       width: 100%;
-    }
-  }
-
-  .btn-group.btn-group-dropdown-divider > .btn:first-child:not(:last-child):not(.dropdown-toggle),
-  .btn-group.btn-group-divider > .btn:not(:last-child),
-  .btn-group > .btn:not(:last-child).btn-group-divider {
-    &.btn-primary {
-      @include btn-group-primary-divider();
-    }
-
-    &.btn-warning {
-      @include btn-group-warning-divider();
-    }
-
-    &.btn-success {
-      @include btn-group-success-divider();
-    }
-
-    &.btn-info {
-      @include btn-group-info-divider();
-    }
-
-    &.btn-danger {
-      @include btn-group-danger-divider();
-    }
-
-    &.btn-secondary {
-      @include btn-group-secondary-divider();
     }
   }
 
@@ -75,121 +41,45 @@
     padding-right: 1.125rem;
   }
 
-  .btn-group.btn-group-divided {
-    .btn.active {
-      &.btn-primary,
-      &.btn-outline-primary {
-        @include btn-primary-glow();
+  .btn-group-block.btn-group-outline-block {
+    .btn {
+      position: relative;
+    }
+
+    .btn:not(.active) {
+      background-color: transparent;
+      border-color: #5a47c1;
+    }
+
+    .btn:first-child {
+      border-right: none;
+    }
+
+    .btn:last-child {
+      border-left: none;
+    }
+
+    .btn:not(:first-child):not(:last-child) {
+      border-left: none;
+      border-right: none;
+
+      &::before,
+      &::after {
+        content: '';
+        background-color: nga-theme(separator);
+        position: absolute;
+        width: 1px;
+        height: 100%;
+        top: 0;
       }
 
-      &.btn-warning,
-      &.btn-outline-warning {
-        @include btn-warning-glow();
+      &::before {
+        left: 0;
       }
 
-      &.btn-success,
-      &.btn-outline-success {
-        @include btn-success-glow();
-      }
-
-      &.btn-info,
-      &.btn-outline-info {
-        @include btn-info-glow();
-      }
-
-      &.btn-danger,
-      &.btn-outline-danger {
-        @include btn-danger-glow();
-      }
-
-      &.btn-secondary,
-      &.btn-outline-secondary {
-        @include btn-secondary-glow();
+      &::after {
+        right: 0;
       }
     }
   }
-
-  .btn-group.btn-group-divided > .btn {
-    border-radius: nga-theme(btn-border-radius);
-  }
-
-  .btn-group.btn-group-divided > .btn:not(.active) {
-    border-color: #342e73;
-  }
-
-  .btn-group.btn-group-divided > .btn:not(:last-child) {
-    margin-right: 0.5rem;
-  }
-
-  .btn-group.btn-group-divided-hidden .btn:not(.active) {
-    background-color: transparent;
-  }
-
-  .btn-group.btn-group-divided-hidden .btn:not(:last-child) {
-    margin-right: 1rem;
-  }
-
-  .btn-group.btn-group-divided-hidden .btn:first-child:not(:last-child):not(.dropdown-toggle),
-  .btn-group.btn-group-divided .btn:first-child:not(:last-child):not(.dropdown-toggle),
-  .btn-group.btn-group-divided-hidden .btn:not(:first-child):not(:last-child):not(.dropdown-toggle),
-  .btn-group.btn-group-divided .btn:not(:first-child):not(:last-child):not(.dropdown-toggle),
-  .btn-group.btn-group-divided .btn,
-  .btn-group.btn-group-divided-hidden .btn {
-    border-radius: nga-theme(btn-border-radius);
-  }
-}
-
-
-// Divider
-@mixin btn-group-divider($color) {
-  border-right-color: shade($color, 14%);
-}
-
-@mixin btn-group-primary-divider() {
-  @include btn-group-divider(nga-theme(btn-primary-bg));
-}
-
-@mixin btn-group-warning-divider() {
-  @include btn-group-divider(nga-theme(btn-warning-bg));
-}
-
-@mixin btn-group-success-divider() {
-  @include btn-group-divider(nga-theme(btn-success-bg));
-}
-
-@mixin btn-group-info-divider() {
-  @include btn-group-divider(nga-theme(btn-info-bg));
-}
-
-@mixin btn-group-danger-divider() {
-  @include btn-group-divider(nga-theme(btn-danger-bg));
-}
-
-@mixin btn-group-secondary-divider() {
-  @include btn-group-divider(nga-theme(btn-secondary-border));
-}
-
-// Glow
-@mixin btn-primary-glow() {
-  box-shadow: btn-hero-primary-glow();
-}
-
-@mixin btn-warning-glow() {
-  box-shadow: btn-hero-warning-glow();
-}
-
-@mixin btn-success-glow() {
-  box-shadow: btn-hero-success-glow();
-}
-
-@mixin btn-info-glow() {
-  box-shadow: btn-hero-info-glow();
-}
-
-@mixin btn-danger-glow() {
-  box-shadow: btn-hero-danger-glow();
-}
-
-@mixin btn-secondary-glow() {
-  box-shadow: btn-hero-secondary-glow();
 }
